@@ -477,7 +477,7 @@
     <!-- Application Script -->
     <script>
         // --- DATA & ASSETS ---
-        const apiKey = "AIzaSyC352Nu6mPos9XiDaxZ04lKohJBSnv03WI"; 
+        const apiKey = "AIzaSyC352Nu6mPos9XiDaxZ04lKohJBSnv03WI"; // KEEP EMPTY HERE. Paste your "AIza..." key on GitHub!
 
         const marginDoodles = {
             star: `<svg viewBox="0 0 50 50" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M25 5 L30 20 L45 20 L32 30 L37 45 L25 35 L13 45 L18 30 L5 20 L20 20 Z" stroke-dasharray="2 1"/></svg>`,
@@ -1180,19 +1180,22 @@
                                         }
                                     },
                                     finalNote: { type: "STRING", description: "A short, encouraging final grade note." }
-                                }
                             }
                         }
-                    };
+                    }
+                };
 
-                    const result = await this.fetchWithRetry(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`, {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify(payload)
-                    });
+                // Smart switcher: uses public model on GitHub, and preview model in Canvas
+                const modelVersion = apiKey ? "gemini-1.5-flash" : "gemini-2.5-flash-preview-09-2025";
 
-                    const jsonText = result.candidates?.[0]?.content?.parts?.[0]?.text;
-                    if (jsonText) {
+                const result = await this.fetchWithRetry(`https://generativelanguage.googleapis.com/v1beta/models/${modelVersion}:generateContent?key=${apiKey}`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+
+                const jsonText = result.candidates?.[0]?.content?.parts?.[0]?.text;
+                if (jsonText) {
                         this.state.userBreakdown = JSON.parse(jsonText);
                         this.renderSpread();
                     }
