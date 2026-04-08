@@ -477,7 +477,8 @@
     <!-- Application Script -->
     <script>
         // --- DATA & ASSETS ---
-        const apiKey = "AIzaSyAmL1-NoZu2cILXueQwjAPmf9IefXYj1Ik"; // KEEP EMPTY HERE.
+        // Your API Key has been injected below:
+        const apiKey = "AIzaSyC352Nu6mPos9XiDaxZ04lKohJBSnv03WI"; 
 
         const marginDoodles = {
             star: `<svg viewBox="0 0 50 50" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M25 5 L30 20 L45 20 L32 30 L37 45 L25 35 L13 45 L18 30 L5 20 L20 20 Z" stroke-dasharray="2 1"/></svg>`,
@@ -1180,31 +1181,31 @@
                                         }
                                     },
                                     finalNote: { type: "STRING", description: "A short, encouraging final grade note." }
+                                }
                             }
                         }
-                    }
-                };
+                    };
 
-                // Smart switcher: uses public model on GitHub, and preview model in Canvas
-                const modelVersion = apiKey ? "gemini-1.5-flash" : "gemini-2.5-flash-preview-09-2025";
+                    // Smart switcher: forces the public model when live on GitHub
+                    const modelVersion = "gemini-1.5-flash";
 
-                const result = await this.fetchWithRetry(`https://generativelanguage.googleapis.com/v1beta/models/${modelVersion}:generateContent?key=${apiKey}`, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(payload)
-                });
+                    const result = await this.fetchWithRetry(`https://generativelanguage.googleapis.com/v1beta/models/${modelVersion}:generateContent?key=${apiKey}`, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
 
-                const jsonText = result.candidates?.[0]?.content?.parts?.[0]?.text;
-                if (jsonText) {
-                        this.state.userBreakdown = JSON.parse(jsonText);
+                    const jsonText = result.candidates?.[0]?.content?.parts?.[0]?.text;
+                    if (jsonText) {
+                            this.state.userBreakdown = JSON.parse(jsonText);
+                            this.renderSpread();
+                        }
+                    } catch (error) {
+                        console.error("AI Grading Failed:", error);
+                        alert("The AI teacher couldn't grade your paper. Check your browser console (F12) for details, or verify your API key is active.");
                         this.renderSpread();
                     }
-                } catch (error) {
-                    console.error("AI Grading Failed:", error);
-                    alert("The AI teacher couldn't grade your paper. Please try again.");
-                    this.renderSpread();
-                }
-            },
+                },
 
             // --- DOM RENDERING ---
             renderPageData(index, leftTarget, rightTarget, isUnderlay = false) {
