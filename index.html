@@ -266,8 +266,8 @@
         <div class="w-8 h-0.5 bg-[#8a1c1c] opacity-30 mt-1 transform -rotate-2"></div>
     </div>
 
-    <!-- Resting Pencil in the Top Groove -->
-    <div class="fixed top-[31px] left-[15%] md:left-[30%] w-64 md:w-80 lg:w-96 h-3.5 md:h-4 lg:h-5 z-0 flex shadow-[1px_3px_4px_rgba(0,0,0,0.5)] transform rotate-[0.5deg] pointer-events-none">
+    <!-- Resting Pencil in the Top Groove (Now Clickable!) -->
+    <div id="lofi-pencil" class="fixed top-[31px] left-[15%] md:left-[30%] w-64 md:w-80 lg:w-96 h-3.5 md:h-4 lg:h-5 z-[60] flex shadow-[1px_3px_4px_rgba(0,0,0,0.5)] transform rotate-[0.5deg] cursor-pointer hover:scale-[1.01] hover:-rotate-1 transition-transform duration-300" title="Click for vibes...">
         <!-- Eraser -->
         <div class="w-5 h-full bg-[#e89090] rounded-l-[2px] border-y border-l border-black/30"></div>
         <!-- Metal Band -->
@@ -472,6 +472,42 @@
         </div>
     </div>
 
+    <!-- Scrapbook Bio Modal -->
+    <div id="scrapbook-bio-modal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-[150] hidden flex-col justify-center items-center transition-opacity duration-500 opacity-0 cursor-pointer">
+        <!-- The Paper Drop -->
+        <div id="scrapbook-paper" class="relative w-[90%] max-w-lg md:max-w-xl bg-[#f4ebd8] p-8 md:p-12 shadow-[0_20px_50px_rgba(0,0,0,0.6)] transform -translate-y-32 scale-90 -rotate-12 transition-all duration-[600ms] ease-[cubic-bezier(0.34,1.56,0.64,1)] cursor-default">
+            
+            <!-- Aged Paper Texture Overlay -->
+            <div class="absolute inset-0 pointer-events-none opacity-20 mix-blend-multiply" style="background-image: url('data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22n%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.65%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23n)%22/%3E%3C/svg%3E');"></div>
+            
+            <!-- Torn/Uneven Edges illusion (Border) -->
+            <div class="absolute inset-0 pointer-events-none border-[3px] border-[#e0d5be] rounded-[2px] opacity-50" style="clip-path: polygon(1% 2%, 99% 1%, 98% 99%, 2% 98%);"></div>
+
+            <!-- Heavy Tape on Top -->
+            <div class="absolute -top-5 left-1/2 transform -translate-x-1/2 w-32 h-10 bg-white/40 backdrop-blur-md shadow-[0_2px_5px_rgba(0,0,0,0.15)] border border-white/50 -rotate-2 z-20 pointer-events-none" style="clip-path: polygon(2% 10%, 98% 0%, 95% 90%, 5% 100%);"></div>
+
+            <!-- Close 'X' Button -->
+            <button id="btn-close-bio" class="absolute top-4 right-4 md:top-6 md:right-6 font-red-pen text-4xl text-red-600 hover:scale-110 hover:-rotate-6 transition-transform opacity-80 hover:opacity-100 z-30" title="Close">X</button>
+
+            <!-- Bio Content -->
+            <h3 class="font-title text-4xl md:text-6xl text-black border-b-2 border-gray-400 border-dashed pb-2 mb-6 w-full mt-2 transform -rotate-2 relative z-10">Meet the Poet</h3>
+            
+            <div class="font-pencil text-[1.2rem] md:text-[1.5rem] leading-tight text-gray-800 space-y-4 relative z-10">
+                <p>Hailing from Atlanta, GA by way of Jacksonville, FL, <strong class="font-bold text-black text-2xl">Preye</strong> is a storyteller with over 25 years of writing and 20 years of stage performance.</p>
+                <p>Inspired by lyrical legends like Slick Rick, Nas, Lupe Fiasco, and Killah Priest, his work bridges profound narrative with raw emotion.</p>
+                <p>He holds a Master's in Leadership and a Bachelor's in Education. A devoted husband and father of three, his name translates to <em class="text-red-600 font-bold">"God's Gift"</em>.</p>
+                
+                <!-- Red pen flourish at bottom -->
+                <div class="mt-6 pt-4 border-t-2 border-[#D32F2F]/20 text-center transform rotate-1">
+                    <p class="font-red-pen text-xl md:text-2xl opacity-90">
+                        "Grateful to be used as the pen of a ready writer." <span class="text-sm tracking-widest">(Ps 45:1)</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <p class="text-white/60 font-pencil text-2xl mt-12 pointer-events-none transform animate-pulse tracking-widest">Tap anywhere to return to desk</p>
+    </div>
+
     <!-- Application Script -->
     <script>
         // --- DATA & ASSETS ---
@@ -585,6 +621,27 @@
             },
 
             init() {
+                // --- EASTER EGG: LO-FI PENCIL ---
+                const lofiPencil = document.getElementById('lofi-pencil');
+                // I added a smooth royalty-free lo-fi track here. Swap the URL if you have your own!
+                const lofiAudio = new Audio('https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=lofi-study-112191.mp3'); 
+                lofiAudio.loop = true;
+                lofiAudio.volume = 0.2; // Keeps it subtle and in the background
+                let isLofiPlaying = false;
+
+                if (lofiPencil) {
+                    lofiPencil.addEventListener('click', () => {
+                        if (isLofiPlaying) {
+                            lofiAudio.pause();
+                            lofiPencil.style.filter = 'none'; // Removes the glow when stopped
+                        } else {
+                            lofiAudio.play().catch(e => console.log("Audio play failed:", e));
+                            lofiPencil.style.filter = 'drop-shadow(0 0 8px rgba(239, 68, 68, 0.8))'; // Adds a subtle red glow when playing
+                        }
+                        isLofiPlaying = !isLofiPlaying;
+                    });
+                }
+
                 // Password Modal Listeners
                 this.dom.btnSubmitPwd.addEventListener('click', () => this.checkPassword());
                 this.dom.btnCancelPwd.addEventListener('click', () => this.hidePasswordPrompt());
@@ -618,6 +675,30 @@
                     const target = e.target;
                     if (target.closest('.interactive-link')) {
                         this.jumpToSpread(parseInt(target.closest('.interactive-link').dataset.id));
+                    } else if (target.closest('#preye-photo-container')) {
+                        // EASTER EGG: Scrapbook Bio Drop
+                        const modal = document.getElementById('scrapbook-bio-modal');
+                        const paper = document.getElementById('scrapbook-paper');
+                        if (modal) {
+                            modal.classList.remove('hidden');
+                            setTimeout(() => {
+                                modal.classList.remove('opacity-0');
+                                // The bouncy drop effect
+                                paper.classList.remove('-translate-y-32', 'scale-90', '-rotate-12');
+                                paper.classList.add('translate-y-0', 'scale-100', 'rotate-2');
+                            }, 10);
+                        }
+                    } else if (target.closest('#btn-close-bio') || target.id === 'scrapbook-bio-modal') {
+                        // Close the Scrapbook Bio Drop
+                        const modal = document.getElementById('scrapbook-bio-modal');
+                        const paper = document.getElementById('scrapbook-paper');
+                        if (modal) {
+                            modal.classList.add('opacity-0');
+                            // Reverse the drop effect to fly back up
+                            paper.classList.remove('translate-y-0', 'scale-100', 'rotate-2');
+                            paper.classList.add('-translate-y-32', 'scale-90', '-rotate-12');
+                            setTimeout(() => modal.classList.add('hidden'), 500);
+                        }
                     } else if (target.closest('#btn-toggle-record')) {
                         this.toggleRecording();
                     } else if (target.closest('.btn-delete-recording')) {
@@ -1215,14 +1296,21 @@
                             <h1 class="font-title text-6xl md:text-7xl transform -rotate-2 relative z-10">Poet-Tree</h1>
                             <h2 class="font-title text-3xl text-gray-600 relative z-10">Society Vol. 1</h2>
                             
-                            <div class="relative z-10 mt-2 mb-2 flex flex-col items-center">
-                                <div class="relative inline-block transform -rotate-1">
-                                    <img src="https://www.dropbox.com/scl/fi/picj3xnltz14dwwccrdvp/Preye.png?rlkey=bho367fwptoyqw3xmay5mce01&st=95212z4f&raw=1" alt="Preye the Poet" class="w-72 md:w-96 mix-blend-multiply opacity-90 drop-shadow-sm block pointer-events-none" />
+                            <div class="relative z-10 mt-2 mb-2 flex flex-col items-center w-full">
+                                <!-- Static Photo (Clickable) -->
+                                <div id="preye-photo-container" class="relative inline-block transform -rotate-1 cursor-pointer group z-30 transition-transform duration-300 hover:scale-[1.02]" title="Click to read bio">
+                                    <img src="https://www.dropbox.com/scl/fi/picj3xnltz14dwwccrdvp/Preye.png?rlkey=bho367fwptoyqw3xmay5mce01&st=95212z4f&raw=1" alt="Preye the Poet" class="w-64 md:w-80 lg:w-96 mix-blend-multiply opacity-90 drop-shadow-sm block pointer-events-none" />
                                     <!-- Tape Corners -->
-                                    <div class="absolute -top-2 -left-6 w-16 h-6 bg-white bg-opacity-40 backdrop-blur-[2px] shadow-[0_1px_3px_rgba(0,0,0,0.1)] border border-white border-opacity-50 transform -rotate-45 z-20" style="clip-path: polygon(2% 10%, 98% 0%, 95% 90%, 5% 100%);"></div>
-                                    <div class="absolute -top-2 -right-6 w-16 h-6 bg-white bg-opacity-40 backdrop-blur-[2px] shadow-[0_1px_3px_rgba(0,0,0,0.1)] border border-white border-opacity-50 transform rotate-45 z-20" style="clip-path: polygon(0% 5%, 95% 0%, 100% 95%, 5% 90%);"></div>
-                                    <div class="absolute -bottom-2 -left-6 w-16 h-6 bg-white bg-opacity-40 backdrop-blur-[2px] shadow-[0_1px_3px_rgba(0,0,0,0.1)] border border-white border-opacity-50 transform rotate-45 z-20" style="clip-path: polygon(5% 0%, 100% 5%, 95% 100%, 0% 95%);"></div>
-                                    <div class="absolute -bottom-2 -right-6 w-16 h-6 bg-white bg-opacity-40 backdrop-blur-[2px] shadow-[0_1px_3px_rgba(0,0,0,0.1)] border border-white border-opacity-50 transform -rotate-45 z-20" style="clip-path: polygon(0% 0%, 98% 5%, 100% 90%, 2% 100%);"></div>
+                                    <div class="absolute -top-2 -left-6 w-16 h-6 bg-white bg-opacity-40 backdrop-blur-[2px] shadow-[0_1px_3px_rgba(0,0,0,0.1)] border border-white border-opacity-50 transform -rotate-45 z-20 pointer-events-none" style="clip-path: polygon(2% 10%, 98% 0%, 95% 90%, 5% 100%);"></div>
+                                    <div class="absolute -top-2 -right-6 w-16 h-6 bg-white bg-opacity-40 backdrop-blur-[2px] shadow-[0_1px_3px_rgba(0,0,0,0.1)] border border-white border-opacity-50 transform rotate-45 z-20 pointer-events-none" style="clip-path: polygon(0% 5%, 95% 0%, 100% 95%, 5% 90%);"></div>
+                                    <div class="absolute -bottom-2 -left-6 w-16 h-6 bg-white bg-opacity-40 backdrop-blur-[2px] shadow-[0_1px_3px_rgba(0,0,0,0.1)] border border-white border-opacity-50 transform rotate-45 z-20 pointer-events-none" style="clip-path: polygon(5% 0%, 100% 5%, 95% 100%, 0% 95%);"></div>
+                                    <div class="absolute -bottom-2 -right-6 w-16 h-6 bg-white bg-opacity-40 backdrop-blur-[2px] shadow-[0_1px_3px_rgba(0,0,0,0.1)] border border-white border-opacity-50 transform -rotate-45 z-20 pointer-events-none" style="clip-path: polygon(0% 0%, 98% 5%, 100% 90%, 2% 100%);"></div>
+                                    
+                                    <!-- Hover Hint -->
+                                    <div class="absolute bottom-6 right-2 md:right-4 flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-white/80 px-2 py-1 rounded-full backdrop-blur-sm pointer-events-none shadow-sm">
+                                        <span class="text-[10px] md:text-xs font-sans uppercase tracking-widest text-red-600 font-bold">Bio</span>
+                                        <span class="text-sm md:text-lg text-red-600 transform rotate-45 leading-none">✍️</span>
+                                    </div>
                                 </div>
                             </div>
 
