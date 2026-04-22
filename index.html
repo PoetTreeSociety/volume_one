@@ -303,66 +303,61 @@
         </div>
     </div>
 
-    <!-- Retro Polaroid-Style Voice Recorder Trigger on the Desk -->
-    <div id="polaroid-trigger" class="fixed bottom-6 left-4 md:bottom-10 md:left-10 z-[70] cursor-pointer transform -rotate-6 hover:-rotate-3 hover:scale-105 transition-all duration-300 shadow-2xl bg-gradient-to-b from-[#f5f2e6] via-[#ebe6d5] to-[#dfd8c2] p-2 md:p-4 w-20 md:w-40 lg:w-48 rounded-t-lg rounded-b-2xl border border-[#c4beab] flex flex-col gap-2 md:gap-4 lg:gap-5 group">
-        
-        <!-- Top Mic Grille (Polaroid Black Top & Rainbow Stripe) -->
-        <div class="w-full h-6 md:h-10 lg:h-12 bg-[#222] rounded-t-sm border-b-2 border-black flex flex-col justify-between overflow-hidden relative shadow-[inset_0_2px_4px_rgba(0,0,0,0.5)]">
-            <div class="w-full flex-grow opacity-30" style="background-image: repeating-linear-gradient(90deg, transparent, transparent 2px, #000 2px, #000 4px);"></div>
-            <!-- Iconic Retro Rainbow Stripe -->
-            <div class="w-full h-1 md:h-2 flex">
-                <div class="h-full flex-1 bg-[#d82a2a]"></div>
-                <div class="h-full flex-1 bg-[#f49b1a]"></div>
-                <div class="h-full flex-1 bg-[#fcd41c]"></div>
-                <div class="h-full flex-1 bg-[#47b251]"></div>
-                <div class="h-full flex-1 bg-[#2884c7]"></div>
-            </div>
+    <!-- Retro Walkman Video Trigger on the Desk -->
+    <div id="walkman-trigger" class="fixed bottom-6 left-4 md:bottom-10 md:left-10 z-[70] cursor-pointer transform -rotate-6 hover:-rotate-2 hover:scale-105 transition-all duration-300 flex flex-col group drop-shadow-[5px_10px_8px_rgba(0,0,0,0.4)]" title="Click to watch intro...">
+        <!-- Headphone Cord trailing off the desk -->
+        <svg class="absolute -bottom-12 -right-16 md:-bottom-16 md:-right-24 w-24 h-24 md:w-32 md:h-32 stroke-[#222] pointer-events-none z-0 opacity-80" fill="none" stroke-width="2.5" stroke-linecap="round" viewBox="0 0 100 100">
+            <path d="M 20 10 C 20 60, 90 30, 85 80 C 80 120, 30 70, 40 110" />
+        </svg>
+
+        <!-- Walkman Top Buttons -->
+        <div class="flex gap-0.5 md:gap-1 ml-4 md:ml-6 z-10 w-full items-end relative">
+            <div class="w-5 h-2 md:w-7 md:h-3 bg-gray-400 border-x border-t border-gray-600 rounded-t-[2px] shadow-[inset_0_1px_2px_rgba(255,255,255,0.8)]"></div>
+            <div class="w-5 h-2 md:w-7 md:h-3 bg-gray-400 border-x border-t border-gray-600 rounded-t-[2px] shadow-[inset_0_1px_2px_rgba(255,255,255,0.8)]"></div>
+            <!-- Play button pressed -->
+            <div class="w-7 h-2.5 md:w-9 md:h-4 bg-[#e85d04] border-x border-t border-[#9d4002] rounded-t-[2px] shadow-[inset_0_1px_2px_rgba(255,255,255,0.4)] mb-[-2px] group-hover:bg-[#ff7b00]"></div> 
         </div>
 
-        <!-- Microcassette Window -->
-        <div class="w-full aspect-[4/3] bg-[#111] rounded-[2px] border border-[#333] shadow-[inset_0_2px_6px_rgba(0,0,0,0.8)] relative flex items-center justify-center overflow-hidden">
-            <!-- Cassette body -->
-            <div class="w-[85%] h-[75%] bg-[#daddd8] rounded-[2px] flex flex-col items-center justify-between py-1 relative z-10 shadow-sm border border-gray-400">
-                <!-- Spools container -->
-                <div class="flex justify-center gap-3 md:gap-6 w-full mt-1">
-                    <!-- Left Spool -->
-                    <div class="w-4 h-4 md:w-6 md:h-6 lg:w-8 lg:h-8 bg-[#222] rounded-full flex items-center justify-center relative">
-                        <div class="w-1.5 h-1.5 md:w-2 md:h-2 bg-gray-300 rounded-full"></div>
-                        <div class="absolute w-5 h-5 md:w-8 md:h-8 lg:w-10 lg:h-10 rounded-full border-[2px] border-[#333] opacity-40"></div>
+        <!-- Walkman Main Body -->
+        <div class="w-20 md:w-28 lg:w-36 aspect-[3/4.5] bg-[#ffb703] rounded-lg border-2 border-[#fb8500] relative flex flex-col p-2 z-10 overflow-hidden shadow-[inset_2px_2px_5px_rgba(255,255,255,0.4),inset_-2px_-2px_10px_rgba(0,0,0,0.2)]">
+            <!-- Top brand band -->
+            <div class="w-full flex justify-between items-center mb-2">
+                <span class="text-[6px] md:text-[8px] font-sans font-black tracking-widest text-[#222] opacity-80">W-MAN</span>
+                <div class="w-1.5 h-1.5 md:w-2 md:h-2 rounded-full bg-red-500 shadow-[0_0_4px_rgba(255,0,0,0.8)] animate-pulse"></div>
+            </div>
+
+            <!-- Cassette Window Container -->
+            <div class="w-full aspect-[4/3] bg-[#222] rounded-[3px] shadow-[inset_0_2px_5px_rgba(0,0,0,0.8)] relative flex items-center justify-center border-t border-gray-600">
+                <!-- Cassette -->
+                <div class="w-[85%] h-[75%] bg-white/90 rounded-[2px] border border-gray-400 flex flex-col justify-between items-center py-0.5 relative shadow-sm">
+                    <div class="flex w-full justify-center gap-3 md:gap-5 mt-0.5 md:mt-1">
+                        <!-- Spools -->
+                        <div class="w-3 h-3 md:w-5 md:h-5 bg-[#222] rounded-full flex items-center justify-center">
+                            <div class="w-1 h-1 md:w-1.5 md:h-1.5 bg-white rounded-full"></div>
+                        </div>
+                        <div class="w-3 h-3 md:w-5 md:h-5 bg-[#222] rounded-full flex items-center justify-center relative">
+                            <div class="w-1 h-1 md:w-1.5 md:h-1.5 bg-white rounded-full"></div>
+                            <!-- "Tape" ring on right spool -->
+                            <div class="absolute w-4 h-4 md:w-7 md:h-7 rounded-full border border-gray-500 opacity-30"></div>
+                        </div>
                     </div>
-                    <!-- Right Spool -->
-                    <div class="w-4 h-4 md:w-6 md:h-6 lg:w-8 lg:h-8 bg-[#222] rounded-full flex items-center justify-center relative">
-                        <div class="w-1.5 h-1.5 md:w-2 md:h-2 bg-gray-300 rounded-full"></div>
+                    <!-- Cassette Label -->
+                    <div class="w-[90%] bg-[#ffb703] border-t border-gray-300 h-[30%] flex justify-center items-center">
+                        <span class="font-red-pen text-[7px] md:text-[10px] text-red-700 font-bold leading-none transform -rotate-2">Play Me</span>
                     </div>
                 </div>
-                <!-- Middle Label Area with PLAY ME -->
-                <div class="w-[90%] bg-white/90 py-[2px] md:py-1 flex justify-center items-center rounded-sm border border-gray-300 shadow-sm mb-1">
-                    <span class="font-red-pen text-[9px] md:text-sm lg:text-base text-red-600 font-bold leading-none whitespace-nowrap opacity-90 transform -rotate-2">Play Me</span>
-                </div>
             </div>
-            <!-- Red REC light -->
-            <div class="absolute top-1 right-1 w-1.5 h-1.5 md:w-2.5 md:h-2.5 lg:w-3 lg:h-3 bg-red-500 rounded-full animate-pulse z-20"></div>
-        </div>
 
-        <!-- Speaker/Main Body -->
-        <div class="w-full h-10 md:h-20 lg:h-24 flex justify-center items-center">
-            <!-- Polaroid Lens-style Speaker -->
-            <div class="w-10 h-10 md:w-20 md:h-20 lg:w-24 lg:h-24 rounded-full border border-[#a8a396] shadow-[inset_0_1px_5px_rgba(0,0,0,0.8),0_1px_2px_rgba(255,255,255,0.8)] bg-[#2a2a2a] flex items-center justify-center overflow-hidden">
-                 <div class="w-full h-full opacity-40" style="background-image: radial-gradient(#aaa 1px, transparent 1px); background-size: 3px 3px;"></div>
+            <!-- Bottom Design Details -->
+            <div class="flex-grow flex flex-col justify-end mt-2 md:mt-3 opacity-20 gap-[2px] md:gap-[3px]">
+                <div class="w-full h-0.5 bg-black rounded-full"></div>
+                <div class="w-full h-0.5 bg-black rounded-full"></div>
+                <div class="w-full h-0.5 bg-black rounded-full"></div>
+                <div class="w-[70%] h-0.5 bg-black rounded-full"></div>
             </div>
-        </div>
-
-        <!-- Controls -->
-        <div class="flex justify-between items-end pb-1 md:pb-2 w-full px-0.5 md:px-1 gap-1 md:gap-2 lg:gap-3">
-            <!-- Record Button (Polaroid Red) -->
-            <div class="w-4 h-3 md:w-8 md:h-6 lg:w-10 lg:h-7 rounded-[1px] bg-[#d82a2a] shadow-sm border border-[#a81c1c]"></div>
-            <!-- Stop/Rewind Buttons (Dark Grey) -->
-            <div class="w-4 h-3 md:w-8 md:h-6 lg:w-10 lg:h-7 rounded-[1px] bg-[#4a4a4a] shadow-sm border border-[#333]"></div>
-            <div class="w-4 h-3 md:w-8 md:h-6 lg:w-10 lg:h-7 rounded-[1px] bg-[#4a4a4a] shadow-sm border border-[#333]"></div>
-            <!-- Play Button (Ivory White) -->
-            <div class="w-5 h-4 md:w-10 md:h-8 lg:w-12 lg:h-10 rounded-[2px] bg-[#fdfbf7] shadow-sm border border-[#c4beab] flex items-center justify-center group-hover:bg-white transition-colors duration-300 z-10">
-                <span class="text-[#222] text-[8px] md:text-sm lg:text-base ml-0.5 font-bold">▶</span>
-            </div>
+            
+            <!-- Headphone Jack -->
+            <div class="absolute top-1 right-1 w-2 h-2 md:w-3 md:h-3 bg-black rounded-full shadow-inner border border-gray-700"></div>
         </div>
     </div>
 
@@ -609,7 +604,7 @@
                 passwordError: document.getElementById('password-error'),
                 videoModal: document.getElementById('video-modal'),
                 introVideo: document.getElementById('intro-video'),
-                polaroidTrigger: document.getElementById('polaroid-trigger')
+                walkmanTrigger: document.getElementById('walkman-trigger')
             },
 
             dragState: {
@@ -650,7 +645,7 @@
                 });
 
                 // Video / Recorder Listeners
-                this.dom.polaroidTrigger.addEventListener('click', () => this.playIntroVideo());
+                this.dom.walkmanTrigger.addEventListener('click', () => this.playIntroVideo());
                 if(document.getElementById('btn-skip-video')) {
                      document.getElementById('btn-skip-video').addEventListener('click', () => this.closeVideo());
                 }
@@ -1012,7 +1007,7 @@
                 this.state.isBookOpened = true;
                 
                 // Neatly hide the voice recorder when the book opens
-                this.dom.polaroidTrigger.classList.add('opacity-0', 'pointer-events-none');
+                this.dom.walkmanTrigger.classList.add('opacity-0', 'pointer-events-none');
                 
                 // Shift container to center the open spread
                 const container = document.getElementById('notebook-container');
