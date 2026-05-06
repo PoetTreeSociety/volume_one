@@ -2,18 +2,24 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Poet-Tree Society Vol.1 | Composition Notebook</title>
     
-    <!-- Favicon and App Icons -->
+    <!-- Favicon -->
     <link rel="icon" href="https://www.dropbox.com/scl/fi/mwx1h2s39dybxr3oabom5/poetry-logo.png?rlkey=xdg3oezeeqjj1sw8v7aw56nw6&st=o93ap6hj&raw=1" type="image/png">
-    <link rel="apple-touch-icon" href="https://www.dropbox.com/scl/fi/mwx1h2s39dybxr3oabom5/poetry-logo.png?rlkey=xdg3oezeeqjj1sw8v7aw56nw6&st=o93ap6hj&raw=1">
     
-    <!-- Android / Chrome Home Screen Icons -->
-    <link rel="icon" type="image/png" sizes="192x192" href="https://www.dropbox.com/scl/fi/mwx1h2s39dybxr3oabom5/poetry-logo.png?rlkey=xdg3oezeeqjj1sw8v7aw56nw6&st=o93ap6hj&raw=1">
-    <link rel="icon" type="image/png" sizes="512x512" href="https://www.dropbox.com/scl/fi/mwx1h2s39dybxr3oabom5/poetry-logo.png?rlkey=xdg3oezeeqjj1sw8v7aw56nw6&st=o93ap6hj&raw=1">
+    <!-- iOS / Apple App Setup -->
+    <link rel="apple-touch-icon" href="https://www.dropbox.com/scl/fi/mwx1h2s39dybxr3oabom5/poetry-logo.png?rlkey=xdg3oezeeqjj1sw8v7aw56nw6&st=o93ap6hj&raw=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Poet-Tree">
+    
+    <!-- Android / Chrome App Setup -->
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="theme-color" content="#C49A6C">
+    
+    <!-- Inline Web App Manifest (Makes it official on Android without needing a separate .json file) -->
+    <link rel="manifest" href='data:application/manifest+json,%7B%22name%22%3A%22Poet-Tree%20Society%20Vol.1%22%2C%22short_name%22%3A%22Poet-Tree%22%2C%22start_url%22%3A%22.%22%2C%22display%22%3A%22standalone%22%2C%22background_color%22%3A%22%23C49A6C%22%2C%22theme_color%22%3A%22%23C49A6C%22%2C%22icons%22%3A%5B%7B%22src%22%3A%22https%3A%2F%2Fwww.dropbox.com%2Fscl%2Ffi%2Fmwx1h2s39dybxr3oabom5%2Fpoetry-logo.png%3Frlkey%3Dxdg3oezeeqjj1sw8v7aw56nw6%26st%3Do93ap6hj%26raw%3D1%22%2C%22sizes%22%3A%22192x192%22%2C%22type%22%3A%22image%2Fpng%22%7D%2C%7B%22src%22%3A%22https%3A%2F%2Fwww.dropbox.com%2Fscl%2Ffi%2Fmwx1h2s39dybxr3oabom5%2Fpoetry-logo.png%3Frlkey%3Dxdg3oezeeqjj1sw8v7aw56nw6%26st%3Do93ap6hj%26raw%3D1%22%2C%22sizes%22%3A%22512x512%22%2C%22type%22%3A%22image%2Fpng%22%7D%5D%7D'>
     
     <!-- Social Media Previews (Open Graph / Twitter) -->
     <meta property="og:title" content="Poet-Tree Society Vol.1 | Composition Notebook">
@@ -1652,7 +1658,7 @@
                             <div class="space-y-6 opacity-100 transition-opacity duration-500">
                                 <div>
                                     <div class="font-red-pen text-rhythm transform -rotate-1 font-bold text-xl mb-1 circled inline-block px-2">Inspiration</div>
-                                    <div class="font-pencil text-rhythm whitespace-pre-wrap text-lg text-gray-700 ml-4">${breakdown.inspiration}</div>
+                                    <div class="font-pencil text-rhythm whitespace-pre-wrap text-lg text-gray-700 ml-4">${data.breakdown.inspiration}</div>
                                 </div>
                                 <div>
                                     <div class="font-red-pen text-rhythm transform -rotate-1 font-bold text-xl mb-1 inline-block border-b border-red-400">Key Themes</div>
